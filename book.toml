@@ -2,3 +2,6 @@
 title = "Borger Documentation"
 authors = ["luisfonsivevo"]
 language = "en"
+
+[output.html]
+default-theme = "rust"
