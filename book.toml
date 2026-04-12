@@ -6,3 +6,4 @@ language = "en"
 [output.html]
 default-theme = "rust"
 site-url = "/docs/"
+theme = "theme"
