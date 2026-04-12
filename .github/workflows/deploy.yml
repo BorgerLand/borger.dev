@@ -33,6 +33,7 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p _site/docs
+          cp -r readme _site
           cp -r book/. _site/docs/
           cp index.html _site/
 
