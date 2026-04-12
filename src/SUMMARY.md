@@ -11,11 +11,12 @@
 # Concepts
 
 - [Simulation and Presentation](./concepts/simulation-and-presentation.md)
+- [Determinism](./concepts/determinism.md)
 - [Rollback](./concepts/rollback.md)
-- [Cheating](./concepts/cheating.md)
-- [Input and Output State](./concepts/io-state.md)
 - [Trade-Offs](./concepts/trade-offs.md)
+- [Input and Output State](./concepts/io-state.md)
 - [Clients and Scopes](./concepts/clients-and-scopes.md)
+- [Cheating](./concepts/cheating.md)
 
 # API Reference
 
