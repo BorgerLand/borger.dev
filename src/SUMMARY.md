@@ -1,6 +1,6 @@
 # Summary
 
-[Howdy. You've Reached Borger](./README.md)
+[Howdy. You've Reached Borger.](./README.md)
 
 # Workflow
 
