@@ -7,3 +7,6 @@ language = "en"
 default-theme = "rust"
 site-url = "/docs/"
 theme = "theme"
+additional-js = ["llms.js"]
+
+[output.llms-txt-full]

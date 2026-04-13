@@ -22,20 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install mdBook
-        run: |
-          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.5.2/mdbook-v0.5.2-x86_64-unknown-linux-gnu.tar.gz | tar -xz
-          mv mdbook /usr/local/bin/
-
       - name: Build book
         run: mdbook build
+        env:
+          PATH: ${{ github.workspace }}/.github/workflows:$PATH
 
       - name: Assemble site
         run: |
           mkdir -p _site/docs
           cp -r readme _site
-          cp -r book/. _site/docs/
-          cp index.html _site/
+          cp -r book/html. _site/docs
+          cp book/llms-txt-full/llms-full.txt _site/llms.txt
+          cp book/llms-txt-full/llms-full.txt index.html _site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
