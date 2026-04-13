@@ -33,6 +33,7 @@ jobs:
           cp -r book/html/. _site/docs
           cp -r readme book/llms-txt-full/llms-full.txt index.html _site
           cp book/llms-txt-full/llms-full.txt _site/llms.txt
+          mv _site/docs/404.html _site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

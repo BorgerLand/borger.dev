@@ -5,8 +5,8 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Deterministic_algorithm): A deter
 Applying this definition to Borger:
 
 - The `simulation_loop` that you write, as a whole, is assumed to be a deterministic algorithm by the underlying engine that calls it. This is an invariant you must uphold.
-- The "input" of the algorithm (not be confused with [input state](./io-state.md)) is the initial state of the `GameContext` object when `simulation_loop` first begins.
-- The "output" of the algorithm (again, not to be confused with [output state](./io-state.md)) is the mutated state of the `GameContext` object when `simulation_loop` finishes running.
+- The "input" of the algorithm (not be confused with [input state](./io-state.md#input)) is the initial state of the `GameContext` object when `simulation_loop` first begins.
+- The "output" of the algorithm (again, not to be confused with [output state](./io-state.md#output)) is the mutated state of the `GameContext` object when `simulation_loop` finishes running.
 
 ```
 1. INPUT:     GameContext starts out in some kinda way
@@ -52,6 +52,6 @@ While this determinism requirement may sound scary and complicated at first, in 
    - ❌ On the other hand, `hash_set.iter().next()` is bad because it essentially returns a random value.
    - ✅ `BTreeMap` and `BTreeSet` DO have deterministic iteration order, but have different performance characteristics.
 
-Historically, floating-point arithmetic (working with fractional, non-integer numbers) has caused a lot of non-deterministic grief for multiplayer games. For example, `f32::consts::PI.sin()` might return a slightly different number depending on whether it runs on an ARM or Intel CPU, meaning players on the same server who have different hardware don't see exactly the same thing. With Borger, this is no longer an issue, because the same WASM binary runs on all CPU's. [The official spec guarantees cross-platform determinism](https://webassembly.github.io/spec/core/exec/numerics.html#floating-point-operations) for all situations that a game would care about.
+Historically, floating-point arithmetic (working with fractional, non-integer numbers) has caused a lot of non-deterministic grief for multiplayer games. For example, `f32::consts::PI.sin()` might return a slightly different number depending on whether it runs on an ARM or Intel CPU, meaning players on the same [**server**](./server-and-client.md#server) who have different hardware don't see exactly the same thing. With Borger, this is no longer an issue, because the same WASM binary runs on all CPU's. [The official spec guarantees cross-platform determinism](https://webassembly.github.io/spec/core/exec/numerics.html#floating-point-operations) for all situations that a game would care about.
 
 Also note that determinism comes in varying degrees of strictness, depending on the [**trade-off**](./trade-offs.md) used.

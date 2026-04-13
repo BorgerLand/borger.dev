@@ -21,11 +21,11 @@ borger dev
 
 ### Using `borger dev`
 
-The `dev` command runs a series parallel jobs:
+The `dev` command runs several parallel jobs:
 
 - Automatically recompile each time you modify code
-- Host a local game server
-- Host a local web (HTTPS) server - specifically [Vite](https://vite.dev/), which supports hot reloading HTML, CSS, and sometimes even [graphics](https://r3f.docs.pmnd.rs/getting-started/introduction) without having to refresh the page or restart the game.
+- Host a local game [**server**](../concepts/server-and-client.md#server)
+- Host a local game [**client**](../concepts/server-and-client.md#client) web (HTTPS) server - specifically [Vite](https://vite.dev/), which supports hot reloading HTML, CSS, and sometimes even [graphics](https://r3f.docs.pmnd.rs/getting-started/introduction) without having to refresh the page or restart the game.
 
 It can be tricky at first to decipher when `dev` is finished and it's safe to load the game. The golden rule is:
 
