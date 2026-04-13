@@ -52,6 +52,19 @@
 				position: sticky !important;
 				top: 0 !important;
 			}
+
+			.nav-row {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.2em;
+			}
+
+			@media (orientation: landscape) {
+				.nav-row {
+					gap: 2em;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -165,28 +178,21 @@
 								/>
 							</div>
 
-							<p
-								style="
-									display: flex;
-									justify-content: center;
-									align-items: center;
-								"
-							>
-								<span style="flex: 1; text-align: right">
-									<a href="/docs"
-										><strong><em>Documentation</em></strong></a
-									>
-									<span style="padding: 0 2em; opacity: 0.8">✦</span>
-								</span>
+							<p class="nav-row">
+								<a href="/docs" style="flex: 1; text-align: right"
+									><strong><em>Documentation</em></strong></a
+								>
+								<span style="opacity: 0.8">✦</span>
 								<a href="/llms.txt" target="_blank"
 									><strong><em>llms.txt</em></strong></a
 								>
-								<span style="flex: 1; text-align: left">
-									<span style="padding: 0 2em; opacity: 0.8">✦</span>
-									<a href="https://github.com/BorgerLand/Borger" target="_blank"
-										><strong><em>GitHub</em></strong></a
-									>
-								</span>
+								<span style="opacity: 0.8">✦</span>
+								<a
+									href="https://github.com/BorgerLand/Borger"
+									target="_blank"
+									style="flex: 1"
+									><strong><em>GitHub</em></strong></a
+								>
 							</p>
 							<br />
 
