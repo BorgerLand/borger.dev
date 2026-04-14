@@ -13,3 +13,15 @@ Tick ID 101
          ↓
         etc.
 ```
+
+And a [**client**](./server-and-client.md#client) is connected to that server, chugging alongside it in perfect sync:
+
+```
+Tick ID 100
+         ↓
+Tick ID 101
+         ↓
+Tick ID 101
+         ↓
+        etc.
+```

@@ -35,14 +35,14 @@ It can be tricky at first to decipher when `dev` is finished and it's safe to lo
 - The server usually finishes a few seconds before the client
 
 Here's an example of a game that's ready to go:
-![Output of `borger dev`](dev/startup.png)
+![Output of `borger dev`](cli/startup.webp)
 Sometimes during compilation, you'll see the harmless error:
 
 ```
 Cannot find module '@borger/rs' or its corresponding type declarations.
 ```
 
-![Missing @borger/rs module](dev/missing-module.png)
+![Missing @borger/rs module](cli/missing-module.webp)
 This can be safely ignored. For unknown reasons, the wasm-pack tool deletes the old WASM build before beginning, so for a few seconds during compilation, the module doesn't exist. As seen in the screenshot (`Found 0 errors` after it tries again), it corrects itself upon completion.
 
 A few more helpful pointers:
@@ -53,10 +53,10 @@ A few more helpful pointers:
   [CLIENT-VITE]   ➜  Local:   https://localhost:5173/
   ```
 - Push F12 or Ctrl+Shift+I to open the DevTools console in order to verify the engine loaded successfully
-  ![Borger client output](dev/devtools.png)
+  ![Borger client output](cli/devtools.webp)
 - Push Ctrl+C in the terminal to close dev mode
 - The dev server uses something called [self-signed certificates](https://en.wikipedia.org/wiki/Self-signed_certificate). If you've never worked with these before, you'll see a terrifying error the first time you try to test the game:
-  ![Your connection is not private](dev/self-signed.png)
+  ![Your connection is not private](cli/self-signed.webp)
 
   In most cases, the browser is correct to scare you, but local web development is a notable exception. Choose `Advanced -> Proceed`. Essentially what's happened is the browser is unable to verify that this is a legitimate website, because it hasn't been deployed anywhere yet.
 

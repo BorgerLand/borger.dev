@@ -25,7 +25,7 @@ The simplest, cheapest possible procedure for a small friend group looks somethi
 1. Acquire a domain name. If you don't mind using a subdomain, check out [Duck DNS](https://www.duckdns.org/faqs.jsp).
 2. Acquire a server. You could either self-host on your own hardware at home (keep in mind that home IP addresses often change), or rent from a cloud provider. [Oracle Cloud](https://www.oracle.com/cloud/free/) has an "always free" tier for their bottom of the barrel servers.
 3. Point the domain name at the server's IP address. Set TTL to 0 to make it propagate fast. For example:
-   ![DNS Config](release/dns.png)
+   ![DNS Config](deployment/dns.webp)
 4. [Port forwarding](https://en.wikipedia.org/wiki/Port_forwarding)
 
    | Transport Layer | Port | Application Protocol | Purpose     |

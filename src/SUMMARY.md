@@ -2,11 +2,12 @@
 
 [Howdy. You've Reached Borger.](./README.md)
 
-# Workflow
+# Development Cycle
 
-- [Installation](./workflow/installation.md)
-- [Development Cycle](./workflow/dev.md)
-- [Deployment](./workflow/release.md)
+- [Installation](./development-cycle/installation.md)
+- [The CLI](./development-cycle/cli.md)
+- [Workflow](./development-cycle/workflow.md)
+- [Deployment and Hosting](./development-cycle/deployment.md)
 
 # Concepts
 
@@ -15,6 +16,7 @@
 - [Input and Output State](./concepts/io-state.md)
 - [Determinism](./concepts/determinism.md)
 - [Rollback](./concepts/rollback.md)
+- [Misprediction](./concepts/misprediction.md)
 - [Trade-Offs](./concepts/trade-offs.md)
 - [Clients and Scopes](./concepts/clients-and-scopes.md)
 - [Cheating](./concepts/cheating.md)
