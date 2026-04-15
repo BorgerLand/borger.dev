@@ -28,6 +28,8 @@
 - [SlotMap](./api/slotmap.md)
 - [Event Dispatcher](./api/event-dispatcher.md)
 - [Rapier Integration](./api/rapier-integration.md)
+- [Rust API](./api/rust.md)
+  - [Fullscreen Version](./api/rust-no-iframe.md)
 
 # Examples
 

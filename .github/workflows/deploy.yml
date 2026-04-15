@@ -27,10 +27,22 @@ jobs:
         env:
           PATH: ${{ github.workspace }}/.github/workflows:$PATH
 
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Clone borger template
+        run: git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/BorgerLand/BlankTemplate.git /tmp/borger
+
+      - name: Build cargo doc
+        run: |
+          cd /tmp/borger/borger/engine
+          cargo doc --no-deps
+
       - name: Assemble site
         run: |
           mkdir -p _site/docs
           cp -r book/html/. _site/docs
+          cp -r /tmp/borger/target/doc _site/docs/api/rust
           cp -r readme book/llms-txt-full/llms-full.txt index.html _site
           cp book/llms-txt-full/llms-full.txt _site/llms.txt
           mv _site/docs/404.html _site
