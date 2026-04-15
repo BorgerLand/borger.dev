@@ -4,10 +4,10 @@
   #api-frame { border: none; display: block; width: 100%; }
 </style>
 
-<iframe id="api-frame" src="/api/rust/borger/index.html"></iframe>
+<iframe id="api-frame" src="rust/borger/index.html"></iframe>
 
 <script>
-  const BASE = '/api/rust/borger';
+  const BASE = location.pathname.replace(/\/[^/]+$/, '') + '/rust/borger';
   const f = document.getElementById('api-frame');
   const resize = () => f.style.height = (window.innerHeight - f.getBoundingClientRect().top) + 'px';
   resize();
