@@ -4,10 +4,12 @@
 
 Although games built with Borger are very small and efficient, running 2 `rustc` instances and `rust-analyzer` at the same time during development is absolutely brutal. At bare minimum, you will need at least 12GB of RAM and 10GB of available disk storage.
 
+Borger itself was written on a 2014 Dell Precision M2800 equipped with [Xubuntu](https://xubuntu.org/download/).
+
 ### Software Requirements
 
 - [**Bash**](https://www.gnu.org/software/bash/): Required to run Borger's CLI tool. Installing it depends on your operating system:
-  - Linux: Any self-respecting distribution should already have it. Borger itself was written on a 2014 Dell Precision M2800 equipped with [Xubuntu](https://xubuntu.org/download/).
+  - Linux: Any self-respecting distribution should already have it.
   - macOS:
     1.  First you must [purchase](https://www.apple.com/mac/) expensive, unrepairable, unupgradable hardware
     2.  Check your Bash version in the terminal: `bash --version`. If it outputs version 3.2, congrats, your Bash is 20 years out of date. Otherwise, your Bash should be good to go already.

@@ -24,12 +24,12 @@
 # API Reference
 
 - [state.ts](./api/state.md)
+- [Simulation API (Rust)](./api/rust.md)
+  - [Fullscreen Version](./api/rust-fullscreen.md)
 - [Primitives and Structs](./api/primitives-and-structs.md)
 - [SlotMap](./api/slotmap.md)
 - [Event Dispatcher](./api/event-dispatcher.md)
 - [Rapier Integration](./api/rapier-integration.md)
-- [Rust API](./api/rust.md)
-  - [Fullscreen Version](./api/rust-fullscreen.md)
 
 # Examples
 

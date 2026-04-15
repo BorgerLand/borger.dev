@@ -7,19 +7,26 @@
 <iframe id="api-frame" src="rust/borger/index.html"></iframe>
 
 <script>
-  const BASE = location.pathname.replace(/\/[^/]+$/, '') + '/rust/borger';
+  const ROOT = location.pathname.replace(/\/[^/]+$/, '') + '/rust';
   const f = document.getElementById('api-frame');
+
   const resize = () => f.style.height = (window.innerHeight - f.getBoundingClientRect().top) + 'px';
   resize();
   window.addEventListener('resize', resize);
 
-  f.addEventListener('load', () => {
+  const syncHash = () => {
     const iframePath = f.contentWindow.location.pathname + f.contentWindow.location.hash;
-    history.replaceState(null, '', '#' + iframePath.replace(BASE, ''));
+    const relative = iframePath.startsWith(ROOT) ? iframePath.slice(ROOT.length) : iframePath;
+    history.replaceState(null, '', '#' + relative);
+  };
+
+  f.addEventListener('load', () => {
+    syncHash();
     resize();
+    f.contentWindow.addEventListener('hashchange', syncHash);
   });
 
   if (location.hash) {
-    f.src = BASE + location.hash.slice(1);
+    f.src = ROOT + location.hash.slice(1);
   }
 </script>
