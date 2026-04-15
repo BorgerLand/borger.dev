@@ -27,6 +27,9 @@ jobs:
         env:
           PATH: ${{ github.workspace }}/.github/workflows:$PATH
 
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Clone borger template
         run: git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/BorgerLand/BlankTemplate.git /tmp/borger
 
