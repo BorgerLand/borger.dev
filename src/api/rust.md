@@ -1,3 +1,8 @@
+<!--
+Access rustdocs here:
+https://borger.dev/docs/api/rust/borger/index.html
+-->
+
 <style>
   .content main, #mdbook-content { padding: 0 !important; margin: 0 !important; max-width: none !important; }
   .nav-chapters { display: none; }
