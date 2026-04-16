@@ -23,9 +23,15 @@ borger dev
 
 The `dev` command runs several parallel jobs:
 
-- Automatically recompile each time you modify code
-- Host a local game [**server**](../concepts/server-and-client.md#server)
-- Host a local game [**client**](../concepts/server-and-client.md#client) web (HTTPS) server - specifically [Vite](https://vite.dev/), which supports hot reloading HTML, CSS, and sometimes even [graphics](https://r3f.docs.pmnd.rs/getting-started/introduction) without having to refresh the page or restart the game.
+`RUN-CODEGEN`: Run code generator when [`state.ts`](../api/state.md) is changed
+<br />
+`TSC-CODEGEN`: TypeScript error detection on `state.ts`
+<br />
+`SERVER-RUST`: Watch and recompile the server
+<br />
+`CLIENT-RUST`: Watch and recompile the client's WASM binary
+<br />
+`CLIENT-VITE`: HTTPS development server - specifically [Vite](https://vite.dev/), which supports hot reloading HTML, CSS, and sometimes even [graphics](https://r3f.docs.pmnd.rs/getting-started/introduction) without having to refresh the page or restart the game.
 
 It can be tricky at first to decipher when `dev` is finished and it's safe to load the game. The golden rule is:
 

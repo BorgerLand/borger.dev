@@ -49,4 +49,4 @@ While the visual discrepancy is annoying enough on its own, it also wreaks havoc
 
 ### The Solution
 
-**Borger** uses a technique called [**rollback netcode**](./concepts/rollback.md) to automatically resolve these types of conflicts. It allows writing multiplayer game logic with code that looks no different from single-player logic, solving one of the hardest problems in gamedev in a way that you don't even need to think about it.
+**Borger** uses a technique called [**rollback netcode**](./concepts/rollback-and-misprediction.md#rollback) to automatically resolve these types of conflicts. It allows writing multiplayer game logic with code that looks no different from single-player logic, solving one of the hardest problems in gamedev in a way that you don't even need to think about it.

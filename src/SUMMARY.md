@@ -15,25 +15,25 @@
 - [Simulation and Presentation](./concepts/simulation-and-presentation.md)
 - [Input and Output State](./concepts/io-state.md)
 - [Determinism](./concepts/determinism.md)
-- [Rollback](./concepts/rollback.md)
-- [Misprediction](./concepts/misprediction.md)
+- [Rollback and Misprediction](./concepts/rollback-and-misprediction.md)
 - [Trade-Offs](./concepts/trade-offs.md)
 - [Clients and Scopes](./concepts/clients-and-scopes.md)
 - [Cheating](./concepts/cheating.md)
 
+# Examples
+
+- [Listening for Input](./examples/input.md)
+- [Entities](./example/entities.md)
+- [Rapier Integration](./example/rapier.md)
+- [Complete Examples](./examples.md)
+
 # API Reference
 
 - [state.ts](./api/state.md)
+- [Primitives and Structs](./api/primitives-and-structs.md)
 - [Simulation API (Rust)](./api/rust.md)
   - [Fullscreen Version](./api/rust-fullscreen.md)
-- [Primitives and Structs](./api/primitives-and-structs.md)
-- [SlotMap](./api/slotmap.md)
-- [Event Dispatcher](./api/event-dispatcher.md)
-- [Rapier Integration](./api/rapier-integration.md)
-
-# Examples
-
-- [Examples](./examples.md)
+- [Presentation API (TypeScript)](./api/typescript.md)
 
 # Troubleshooting
 

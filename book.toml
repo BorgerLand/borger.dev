@@ -9,4 +9,7 @@ site-url = "/docs/"
 theme = "theme"
 additional-js = ["llms.js"]
 
+[output.html.playground]
+runnable = false
+
 [output.llms-txt-full]

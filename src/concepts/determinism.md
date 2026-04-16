@@ -20,7 +20,7 @@ _The same input should always produce the same output._
 
 While this determinism requirement may sound scary and complicated at first, in practice, it simply means avoiding certain patterns that produce unpredictable results. These are the main 3 offenders you're most likely to run into:
 
-1. Borger's API is the only reliable source of truth for understanding when a tick has occurred, because the system clock continues to move forward even when Borger [**rolls back**](./rollback.md).
+1. Borger's API is the only reliable source of truth for understanding when a tick has occurred, because the system clock continues to move forward even when Borger [**rolls back**](./rollback-and-misprediction.md#rollback).
    - ❌ `std::time`
    - ❌ `web_time` crate
    - ❌ `chrono` crate

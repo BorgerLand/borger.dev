@@ -16,7 +16,7 @@ Borger itself was written on a 2014 Dell Precision M2800 equipped with [Xubuntu]
 
 ### More recommendations
 
-- [**Visual Studio Code**](https://code.visualstudio.com/Download) - Technically any IDE will do the job (or even a plain text editor if you're severely RAM-constrained), but Borger is preconfigured to work with VSCode.
+- [**Visual Studio Code**](https://code.visualstudio.com/Download) - Technically any IDE will do the job (or even a plain text editor if you're severely RAM-constrained), but Borger is preconfigured to work with VSCode. Here's a good starter pack of optional extensions to install:
   - [**rust-analyzer**](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer) - Makes an enormous difference in how easy it is to write Rust
   - [**Even Better TOML**](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml) - Syntax highlighting for TOML files
   - [**CodeLLDB**](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb) - For debugging the game server. Because game logic is shared between server and client, this is often easier than trying to debug Rust in-browser.

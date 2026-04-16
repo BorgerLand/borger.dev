@@ -2,8 +2,9 @@
 
 _State_ is the data that is available to the game to read, process, and write to.
 
-- In both Rust and TypeScript, it takes the form of a big chungus struct whose shape is defined by your [`state.ts`](../api/state.md).
+- In both Rust and TypeScript, it takes the form of a big chungus struct whose shape is defined entirely by your [`state.ts`](../api/state.md).
 - Networking and synchronization happen automagically whenever you mutate state. A game written with Borger never ever manually sends data over the wire.
+- State is susceptible to [**mispredictions**](./rollback-and-misprediction.md#misprediction).
 
 ### Input
 
@@ -16,7 +17,8 @@ _Input state_ is the sole means for a [**client**](./server-and-client.md#client
 
 ### Output
 
-_Output state_ describes everything in the game world: player positions, health, door hinge angles, mission objectives, and more. Any information that needs to be kept in sync belongs here.
+_Output state_ describes everything in the game world: player positions, health, door hinge angles, mission objectives, and more.
 
 - It is only writable during a [**simulation tick**](./simulation-and-presentation.md#simulation).
--
+- In simulation logic, the output struct is called `SimulationState`. Clients' inputs are nested inside each individual client struct for convenience. In presentation, it's simply known as `Borger.Output`.
+- The [**server and client**](./server-and-client.md) both share a copy of output state. The server has a complete view of everything, while the client can only see what's in [**scope**](./clients-and-scopes.md).
