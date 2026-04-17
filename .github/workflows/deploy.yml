@@ -24,13 +24,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Add workflows to PATH
+        run: echo "${{ github.workspace }}/.github/workflows" >> $GITHUB_PATH
+
       - name: Build book
-        run: |
-          echo "PWD: $(pwd)"
-          echo "GIT ROOT: $(git rev-parse --show-toplevel)"
-          mdbook build
-        env:
-          PATH: ${{ github.workspace }}/.github/workflows:$PATH
+        run: mdbook build
 
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
