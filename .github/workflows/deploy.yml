@@ -24,6 +24,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Debug git state
+        run: |
+          git log -1 --format="%ci" -- src/README.md
+          git branch
+          git status
+
       - name: Build book
         run: mdbook build
         env:
