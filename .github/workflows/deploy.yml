@@ -24,14 +24,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Debug git state
-        run: |
-          git log -1 --format="%ci" -- src/README.md
-          git branch
-          git status
-
       - name: Build book
-        run: mdbook build
+        run: |
+          echo "PWD: $(pwd)"
+          echo "GIT ROOT: $(git rev-parse --show-toplevel)"
+          mdbook build
         env:
           PATH: ${{ github.workspace }}/.github/workflows:$PATH
 
