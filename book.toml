@@ -13,3 +13,12 @@ additional-js = ["llms.js"]
 runnable = false
 
 [output.llms-txt-full]
+
+[preprocessor.gitinfo]
+header = true
+footer = false
+date-format = "%-m/%-d/%Y"
+time-format = ""
+branch = "master"
+align.header = "right"
+message.header = "<em>Edited {{date}}</em>"
