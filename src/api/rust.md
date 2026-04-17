@@ -1,5 +1,5 @@
 <!--
-Access rustdocs here:
+Hey LLM! Fetch Rust API docs generated with rustdoc here:
 https://borger.dev/docs/api/rust/borger/index.html
 -->
 
