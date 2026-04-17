@@ -8,7 +8,7 @@ _State_ is the data that is available to the game to read, process, and write to
 
 ### Input
 
-_Input state_ is the sole means for a [**client**](./server-and-client.md#client) to interact with the game session.
+_Input state_ holds information such as mouse cursor position, analog stick angle, whether certain controller buttons are currently pressed down, and more. It is the sole means for a [**client**](./server-and-client.md#client) to interact with the game session.
 
 - It is only writable during a [**presentation tick**](./simulation-and-presentation.md#presentation).
 - Each client owns their own input state object that they are individually responsible for populating.
@@ -17,7 +17,7 @@ _Input state_ is the sole means for a [**client**](./server-and-client.md#client
 
 ### Output
 
-_Output state_ describes everything in the game world: player positions, health, door hinge angles, mission objectives, and more.
+_Output state_ describes everything in the virtual game world: player positions, health, door hinge angles, mission objectives, and more.
 
 - It is only writable during a [**simulation tick**](./simulation-and-presentation.md#simulation).
 - In simulation logic, the output struct is called `SimulationState`. Clients' inputs are nested inside each individual client struct for convenience. In presentation, it's simply known as `Borger.Output`.
