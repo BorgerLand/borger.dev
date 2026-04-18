@@ -2,7 +2,7 @@
 
 ### Hardware Requirements
 
-Although games built with Borger are very small and efficient, running 2 `rustc` instances and `rust-analyzer` at the same time during development is absolutely brutal. At bare minimum, you will need at least 10GB of available disk storage and 12GB of RAM if using `rust-analyzer`.
+Although games built with Borger are very small and efficient, running 2 `rustc` instances and `rust-analyzer` at the same time during development is absolutely brutal. At bare minimum, you will need at least 10GB of available disk storage, and if using `rust-analyzer`, at least 12GB of total RAM .
 
 Borger itself was written on a 2014 Dell Precision M2800 equipped with [Xubuntu](https://xubuntu.org/download/). If that clunker can run it, so can you!
 

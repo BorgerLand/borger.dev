@@ -26,7 +26,7 @@ The term _client_ is used loosely to refer to a group of a few different things 
 4. The human who's playing said game
 
 - The client's [**state**](./io-state.md#output) is said to be a _prediction_. Because of [**network latency**](../#the-problem), the client needs to try to predict what the server will send before the client receives anything.
-- The most important thing to predict is the consequences of [**inputs**](./io-state.md#input). When the player tries to move their character, this should happen [**immediately**](./trade-offs.md#prediction) without waiting for the server's response.
+- The most important thing to predict is the consequences of [**inputs**](./io-state.md#input). When the player tries to move their character, this should happen [**immediately**](./trade-offs.md) without waiting for the server's response.
 - Classifying and treating the client's state as a prediction is what prevents certain forms of [**cheating**](./cheating.md). It's not real, so it can't hurt you!
 - It continuously sends input events to the server: button presses, joysticks, etc. These inputs are the client's only means of impacting the game session.
 - And of course, clients run [**presentation logic**](./simulation-and-presentation.md#presentation), unlike the server.

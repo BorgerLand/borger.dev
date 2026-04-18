@@ -42,12 +42,12 @@ if input.jump
 - When the client runs the simulation logic on tick ID 100, `input.jump == true`, because the client has direct access to their own keyboard. No slow internet connection is involved.
 - When the server runs the simulation logic on tick ID 100, `input.jump == false`, because the spacebar key press is still making its way downtown over the internet. This is an example of _misprediction_.
 
-The above misprediction is caused by the server having not received all [**inputs**](./io-state.md) from all clients yet. Clients also experience misprediction; arguably more so. Misprediction is fundamentally caused by the simulation loop's need to keep running and making predictions even when it doesn't have all the information it needs to be fully accurate. Its ability to continue blindly running forward is what allows inputs to feel responsive, which is very important in fast-paced multiplayer. The player would be very angry if jumping were to require [**waiting for consensus**](./trade-offs.md#waitforconsensus) across all devices. A platformer would be impossible to play.
+The above misprediction is caused by the server having not received all [**inputs**](./io-state.md) from all clients yet. Clients also experience misprediction; arguably more so. Misprediction is fundamentally caused by the simulation loop's need to keep running and making predictions even when it doesn't have all the information it needs to be fully accurate. Its ability to continue blindly running forward is what allows inputs to feel responsive, which is very important in fast-paced multiplayer. The player would be very angry if jumping were to require [**waiting for consensus**](./trade-offs.md) across all devices. A platformer would be impossible to play.
 
 In practice, what does misprediction look like to the player?
 
 - Lag is the simplest and most common form of misprediction. Whether you're seeing other players stall and stutter during a bad connection, or a slight delay in picking up a weapon, the effects of lag are caused by your client being unable to predict something. It's waiting for the server to tell you what happened.
-- Imagine 2 players trying to pick up the same gun at the same time. If the collision callback were to run in [**Immediate**](./trade-offs.md#immediate) mode, both of them equip the gun. This results in a gnarly misprediction when the server picks a winner and rips the gun back out of the loser's hand. Whether it's more important to quickly equip weapons or prevent mispredictions entirely depends on the type of game.
+- Imagine 2 players trying to pick up the same gun at the same time. If the collision callback were to run in [**Immediate**](./trade-offs.md) mode, both of them equip the gun. This results in a gnarly misprediction when the server picks a winner and rips the gun back out of the loser's hand. Whether it's more important to quickly equip weapons or prevent mispredictions entirely depends on the type of game.
 
 ### Rollback
 
@@ -98,4 +98,4 @@ Tick ID 102
 		etc.
 ```
 
-The engine makes sure that only the final sub-tick is ever presented to the player, and so as long as the code is [**deterministic**](./determinism.md), the illusion is complete and they are blissfully unaware of what's happening.
+The engine makes sure that only the final sub-tick is ever presented to the player, and so as long as the code is [**deterministic**](./determinism.md), the illusion is complete and they are blissfully unaware of what's happening. It's important to note the performance implications here: more latency means more rollback means more ticks having to re-run during the short 33ms time window. The laggiest client hurts everyone.
