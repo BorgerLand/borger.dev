@@ -68,9 +68,9 @@ Sometimes it can make sense for a function to be called under multiple contexts:
 fn update_character(ctx: &mut GameContext<impl ImmediateOrWaitForServer>)
 ```
 
-### [`multiplayer_tradeoff!()`](../api/rust.md#/borger/macro.multiplayer_tradeoff.html)
+### `multiplayer_tradeoff!()`
 
-This macro is what allows toggling between trade-offs. Notably, **trade-offs can only be nested in order of increasing latency**:
+[This macro](../api/rust.md#/borger/macro.multiplayer_tradeoff.html) is what allows toggling between trade-offs. Notably, **trade-offs can only be nested in order of increasing latency**:
 
 ```rust
 fn simulation_loop(ctx: &mut GameContext<Immediate>)
