@@ -48,7 +48,7 @@ While this determinism requirement may sound scary and complicated at first, in 
      ```
 
 3. If using Rust's built-in `HashMap` or `HashSet`, keep in mind that the iteration order is randomized, so deterministic code can't rely on them to iterate in any certain order. You can still use them and their iterators, but whatever value you're attempting to derive from them must still be deterministic. For example:
-   - ✅ You could safely calculate the sum of a `HashSet<i32>` by iterating it, because _integer_ addition is commutative.
+   - ✅ You could safely calculate the sum of a `HashSet<i32>` by iterating it, because _integer_ addition is commutative (`1+2 == 2+1`).
    - ❌ On the other hand, `hash_set.iter().next()` is bad because it essentially returns a random value.
    - ✅ `BTreeMap` and `BTreeSet` DO have deterministic iteration order, but have different performance characteristics.
 
