@@ -71,7 +71,7 @@ A few more helpful pointers:
 `/src/state.ts` - Declaration of [networked state](../api/state.md)  
 `/src/presentation/index.ts` - [Presentation](../concepts/simulation-and-presentation.md#presentation) logic entry point (rendering, UI, audio)  
 `/src/simulation/lib.rs` - [Simulation](../concepts/simulation-and-presentation.md#simulation) logic entry point (game logic)  
-`/src/simulation/input.rs` - [Input](../concepts/input.md) handling callbacks  
+`/src/simulation/input.rs` - [Input](../concepts/io-state.md#input) handling callbacks
 `/index.html` - Main webpage, client entry point  
 `/assets` - Art files loaded by the game  
 `/borger` - [Source code of the framework](https://github.com/BorgerLand/Borger), linked via a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)  
