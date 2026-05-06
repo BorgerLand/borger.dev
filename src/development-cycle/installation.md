@@ -9,9 +9,10 @@ Borger itself was written on a 2014 Dell Precision M2800 equipped with [Xubuntu]
 ### Software Requirements
 
 - [**Bash**](https://www.gnu.org/software/bash/): Required to run Borger's CLI tool. Installing it depends on your operating system:
-  - Linux: Any self-respecting distribution should already have it.
+  - Linux: Usually already installed, depending on distro
   - macOS: Requires [purchasing](https://www.apple.com/mac/) expensive, unrepairable, unupgradable hardware, but comes with Bash 3.2 (released in 2006) out of the box.
   - Windows: Requires [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install), a mini Linux virtual machine. High risk of Windows Update forcing a reboot that deletes your unsaved work. It is also highly probable that Bill Gates performed unscrupulous activities with Jeffrey Epstein.
+- [**Curl**](https://curl.se/download.html): Command for downloading things, such as the CLI tool
 - [**Git**](https://git-scm.com/install/): Used internally by the CLI tool to generate projects
 
 ### More recommendations
@@ -33,4 +34,4 @@ Open a terminal and run the command:
 curl -fsSL https://eat.borger.dev | bash
 ```
 
-This installs the latest `borger` CLI tool, as well as Rustup, Bun, Cargo Watch, and wasm-pack if they can't be found. If asked upon completion, close and restart the terminal. Do note the security implications of downloading and installing several programs from the internet.
+This installs the latest `borger` CLI tool, as well as Rustup, Bun, Node.js, cargo-watch, and wasm-pack if they can't be found. If asked upon completion, close and restart the terminal. Do note the security implications of downloading and installing several programs from the internet.
