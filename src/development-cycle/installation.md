@@ -34,4 +34,4 @@ Open a terminal and run the command:
 curl -fsSL https://eat.borger.dev | bash
 ```
 
-This installs the latest `borger` CLI tool, as well as Rustup, Bun, Node.js, cargo-watch, and wasm-pack if they can't be found. If asked upon completion, close and restart the terminal. Do note the security implications of downloading and installing several programs from the internet.
+This installs the latest `borger` CLI tool, as well as Rustup, Node.js, cargo-watch, and wasm-pack if they can't be found. If asked upon completion, close and restart the terminal. Do note the security implications of downloading and installing several programs from the internet.

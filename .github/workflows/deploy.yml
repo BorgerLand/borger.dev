@@ -30,18 +30,15 @@ jobs:
       - name: Build book
         run: mdbook build
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v2
-
       - name: Clone borger template
         run: git clone --depth=1 --recurse-submodules --shallow-submodules https://github.com/BorgerLand/BlankTemplate.git /tmp/borger
 
       - name: Build cargo doc
         run: |
           cd /tmp/borger
-          bun install --frozen-lockfile
+          npm ci
           cd borger/code_generator
-          bun src/main.ts
+          npx tsx src/main.ts
           cd ../engine
           cargo doc --no-deps
 
