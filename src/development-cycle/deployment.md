@@ -3,7 +3,7 @@
 ### Release build
 
 ```bash
-borger release --build
+borger release
 ```
 
 This produces a `release` folder containing:
@@ -11,34 +11,47 @@ This produces a `release` folder containing:
 - `/release/server` - The final native executable, compiled to run on your OS
 - `/release/client` - The static webpage, which can be hosted with any HTTP server capable of serving files
 
-### Hosting
+### Prerequisites
 
-Deployment is a bit of a manual procedure at the moment due to requirements that Borger isn't able to provide for free:
+Borger is free software, and as such, is unable to provide all the necessary infrastructure and services required for server hosting. You will need:
 
-- A domain name. TLS certificate providers typically refuse to generate certificates for a raw IP address.
-- At least one always-on dedicated server. Pros with a high concurrent user (CCU) count typically have multiple across different regions of the world to handle demand.
+1. At least one always-on **dedicated server** (also known as a virtual private server (VPS) or compute instance). If you're just getting started, [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/) offers a single, small compute instance and will never charge you for it. You may choose to have multiple servers across different global regions. In terms of maximum players that a single server can handle, there isn't yet any concrete data for Borger specifically, but a single powerful server hosting a well-optimized game should theoretically be able to handle more than 1000 CCU (concurrent users). [Most web games](https://webgamedb.com/) never even come close to this.
+2. A **domain name** (either pay for one or find a free subdomain), because Safari has some awful [bug](https://www.reddit.com/r/webdev/comments/1pzmhvf/websocket_broken_on_safariios_26/) that prevents it from connecting to a raw IP address. The domain name should point to/fall back to an IPv4 address because a [frightening percentage of the world](https://stats.labs.apnic.net/ipv6) can't connect to IPv6. Some free options:
+   - [https://nip.io/](https://nip.io/) - No account required, hardcodes the IP address into the domain. If the IP address changes after you've given out a link, the link is now dead.
+   - [https://www.duckdns.org/](https://www.duckdns.org/) - Requires an account, lets you pick out your own name.
+
+3. **TLS certificates** for the domain name, which can be obtained from a free service called [Let's Encrypt](https://letsencrypt.org/), via a tool called [Certbot](https://certbot.eff.org/instructions). Remember that TLS certificates expire. The game server automatically reloads them daily, making use of the fact that Certbot overwrites the same files each time it renews them. Your HTTP server of choice must also be able to handle this.
 
 If enough demand is shown, a paid service will be introduced in order to automate this process. For now, server orchestration and matchmaking are outside the scope of the problems Borger aims to solve.
 
-The simplest, cheapest possible procedure for a small friend group looks something like this. It's not recommended for any significant amount of CCU, so this guide won't go into great detail.
+### Firewall Settings/[Port Forwarding](https://en.wikipedia.org/wiki/Port_forwarding)
 
-1. Acquire a domain name. If you don't mind using a subdomain, check out [Duck DNS](https://www.duckdns.org/faqs.jsp).
-2. Acquire a server. You could either self-host on your own hardware at home (keep in mind that home IP addresses often change), or rent from a cloud provider. [Oracle Cloud](https://www.oracle.com/cloud/free/) has an "always free" tier for their bottom of the barrel servers.
-3. Point the domain name at the server's IP address. Set TTL to 0 to make it propagate fast. For example:
-   ![DNS Config](deployment/dns.webp)
-4. [Port forwarding](https://en.wikipedia.org/wiki/Port_forwarding)
+| Port | Transport Layer Protocol | Application Protocol | Purpose                       |
+| ---- | ------------------------ | -------------------- | ----------------------------- |
+| 6969 | UDP                      | WebTransport         | Game Server                   |
+| 6996 | TCP                      | WebSocket            | Game Server                   |
+| 80   | TCP                      | HTTP                 | Game Client + Certbot Renewal |
+| 443  | TCP                      | HTTPS                | Game Client                   |
 
-   | Transport Layer | Port | Application Protocol | Purpose     |
-   | --------------- | ---- | -------------------- | ----------- |
-   | UDP             | 6969 | WebTransport         | Game Server |
-   | TCP             | 6996 | WebSocket            | Game Server |
-   | TCP             | 80   | HTTP                 | Game Client |
-   | TCP             | 443  | HTTPS                | Game Client |
+### Make 'em Move, Hunny
 
-5. TLS Certificates can be obtained for free through a service called [Let's Encrypt](https://letsencrypt.org/), via a tool called [Certbot](https://certbot.eff.org/instructions)
+The game server and HTTP server must be running at the same time.
 
-6. Run the servers, on the server:
+Game server:
 
-   ```bash
-   borger release --run --fullchain /etc/letsencrypt/live/borger.land/fullchain.pem --privkey /etc/letsencrypt/live/borger.land/privkey.pem
-   ```
+```bash
+#note there are more flags eg. for using different ports
+./server --fullchain /etc/letsencrypt/live/my.domain.com/fullchain.pem --privkey /etc/letsencrypt/live/my.domain.com/privkey.pem
+```
+
+HTTP server: There is currently not an included default. You are responsible for choosing one (nginx, Caddy, Apache, plain Node.js script, etc.). It must:
+
+- Serve static files, with the root pointed to the `client` directory. This works well with Certbot's `webroot` plugin.
+- It must forward/redirect HTTP to HTTPS in order to enable all required web platform features.
+- Use these headers:
+
+```
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
