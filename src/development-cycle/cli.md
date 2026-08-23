@@ -15,7 +15,7 @@ borger dev
 ```bash
 git clone https://whatever/my_game.git
 cd my_game
-borger setup
+borger install
 borger dev
 ```
 
