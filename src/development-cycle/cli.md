@@ -54,6 +54,11 @@ This can be safely ignored. For unknown reasons, the wasm-pack tool deletes the 
 A few more helpful pointers:
 
 - Visit <https://localhost:5173> in your browser to finally see the "game"! (A blank page by default)
+- The dev server uses something called [self-signed certificates](https://en.wikipedia.org/wiki/Self-signed_certificate). If you've never worked with these before, you'll see a terrifying error the first time you try to test the game:
+  ![Your connection is not private](cli/self-signed.webp)
+
+  In most cases, the browser is correct to scare you, but local web development is a notable exception. Essentially what's happened is the browser is unable to verify that this is a legitimate website, because it hasn't been [deployed](http://localhost:3000/development-cycle/deployment.html) anywhere yet. Choose `Advanced -> Proceed`.
+
 - If you ever forget the URL, the Vite server reminds you:
   ```
   [CLIENT-VITE]   ➜  Local:   https://localhost:5173/
@@ -61,23 +66,15 @@ A few more helpful pointers:
 - Push F12 or Ctrl+Shift+I to open the DevTools console in order to verify the engine loaded successfully
   ![Borger client output](cli/devtools.webp)
 - Push Ctrl+C in the terminal to close dev mode
-- The dev server uses something called [self-signed certificates](https://en.wikipedia.org/wiki/Self-signed_certificate). If you've never worked with these before, you'll see a terrifying error the first time you try to test the game:
-  ![Your connection is not private](cli/self-signed.webp)
-
-  In most cases, the browser is correct to scare you, but local web development is a notable exception. Choose `Advanced -> Proceed`. Essentially what's happened is the browser is unable to verify that this is a legitimate website, because it hasn't been deployed anywhere yet.
 
 ### Project Directory Structure
 
-`/src/state.ts` - Declaration of [networked state](../api/state.md)  
-`/src/presentation/index.ts` - [Presentation](../concepts/simulation-and-presentation.md#presentation) logic entry point (rendering, UI, audio)  
-`/src/simulation/lib.rs` - [Simulation](../concepts/simulation-and-presentation.md#simulation) logic entry point (game logic)  
+`/src/state.ts` - Declaration of [networked state](../api/state.md)
+`/src/simulation/lib.rs` - [Simulation](../concepts/simulation-and-presentation.md#simulation) logic entry point (game logic)
 `/src/simulation/input.rs` - [Input](../concepts/io-state.md#input) handling callbacks
-`/index.html` - Main webpage, client entry point  
-`/assets` - Art files loaded by the game  
-`/borger` - [Source code of the framework](https://github.com/BorgerLand/Borger), linked via a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)  
-`/Cargo.toml` - Rust library dependencies  
-`/package.json` - Java/TypeScript library dependencies  
-`/rust-toolchain.toml` - Change which version of Nightly Rust to compile with  
-`/vite.config.ts` - Install Vite plugins (such as [React](https://react.dev/)) for better hot reloading support
-
-The rest can usually be ignored.
+`/src/presentation/index.ts` - [Presentation](../concepts/simulation-and-presentation.md#presentation) logic entry point (rendering, UI, audio)
+`/index.html` - Game's main webpage, client entry point
+`/assets` - Art files loaded by the game
+`/borger` - [Source code of the framework](https://github.com/BorgerLand/Borger), linked via a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+`/Cargo.toml` - Rust library dependencies
+`/package.json` - Java/TypeScript library dependencies
