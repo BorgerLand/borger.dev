@@ -39,7 +39,7 @@ jobs:
           cd /tmp/borger
           npm ci
           npx tsx src/state.ts
-          cd engine
+          cd borger/engine
           cargo doc --no-deps
 
       - name: Assemble site
