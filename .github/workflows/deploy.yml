@@ -38,9 +38,8 @@ jobs:
         run: |
           cd /tmp/borger
           npm ci
-          cd borger/code_generator
-          npx tsx src/main.ts
-          cd ../engine
+          npx tsx src/state.ts
+          cd engine
           cargo doc --no-deps
 
       - name: Assemble site
