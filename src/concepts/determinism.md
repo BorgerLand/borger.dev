@@ -5,7 +5,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Deterministic_algorithm): A deter
 Applying this definition to Borger:
 
 - The `simulation_loop` that you write, as a whole, is assumed to be a deterministic algorithm by the underlying engine that calls it. This is an invariant you must uphold.
-- The "input" of the algorithm (not be confused with [input state](./io-state.md#input)) is the initial state of the `GameContext` object when `simulation_loop` first begins.
+- The "input" of the algorithm (not to be confused with [input state](./io-state.md#input)) is the initial state of the `GameContext` object when `simulation_loop` first begins.
 - The "output" of the algorithm (again, not to be confused with [output state](./io-state.md#output)) is the mutated state of the `GameContext` object when `simulation_loop` finishes running.
 
 ```
@@ -18,14 +18,14 @@ Applying this definition to Borger:
 
 _The same input should always produce the same output._
 
-While this determinism requirement may sound scary and complicated at first, in practice, it simply means avoiding certain patterns that produce unpredictable results. These are the main 3 offenders you're most likely to run into:
+While this determinism requirement may sound scary and complicated at first, in practice, it simply means avoiding certain patterns that produce unpredictable results. These are the main 4 offenders you're most likely to run into:
 
-1. Borger's API is the only reliable source of truth for understanding when a tick has occurred, because the system clock continues to move forward even when Borger [**rolls back**](./rollback-and-misprediction.md#rollback).
+1. Borger's API is the only reliable source of truth for understanding when a tick has occurred, because the **system clock** continues to move forward even when Borger [**rolls back**](./rollback-and-misprediction.md#rollback).
    - ❌ `std::time`
    - ❌ `web_time` crate
    - ❌ `chrono` crate
    - ✅ `TickInfo::id()`
-2. If using the `rand` crate (or similar) for random number generation, always use a [seed](https://en.wikipedia.org/wiki/Random_seed) derived from game state:
+2. If using the `rand` crate (or similar) for **random number generation**, always use a [seed](https://en.wikipedia.org/wiki/Random_seed) derived from game state:
    - ❌
 
      ```rust
@@ -44,10 +44,15 @@ While this determinism requirement may sound scary and complicated at first, in 
 
      //2468 can be replaced with any random constant, or even a game
      //state variable, in order to avoid getting the same result from
-     //every SmallRNG instance in the same tick
+     //every SmallRng instance in the same tick
      ```
 
-3. If using Rust's built-in `HashMap` or `HashSet`, keep in mind that the iteration order is randomized, so deterministic code can't rely on them to iterate in any certain order. You can still use them and their iterators, but whatever value you're attempting to derive from them must still be deterministic. For example:
+3. Borger only knows how to save and restore `GameContext`, so **mutable globals** act as a hidden "input" that changes the result of `simulation_loop`.
+   - ❌ `static mut`
+   - ❌ A `static` or `thread_local!` with interior mutability (`Mutex`, `RwLock`, `Cell`, `RefCell`, atomic primitives, etc.), including when wrapped in `LazyLock`, `lazy_static`, or `once_cell`
+   - ✅ Immutable `const` and `static` values, since they never change
+   - ✅ Just put it in the stankin' [`state.ts`](../api/state.md) instead
+4. If using Rust's built-in `HashMap` or `HashSet`, keep in mind that the **iteration order is randomized**, so deterministic code can't rely on them to iterate in any certain order. You can still use them and their iterators, but whatever value you're attempting to derive from them must still be deterministic. For example:
    - ✅ You could safely calculate the sum of a `HashSet<i32>` by iterating it, because _integer_ addition is commutative (`1+2 == 2+1`).
    - ❌ On the other hand, `hash_set.iter().next()` is bad because it essentially returns a random value.
    - ✅ `BTreeMap` and `BTreeSet` DO have deterministic iteration order, but have different performance characteristics.
