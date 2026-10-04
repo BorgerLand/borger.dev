@@ -20,5 +20,5 @@ _Input state_ holds information such as mouse cursor position, analog stick angl
 _Output state_ describes everything in the virtual game world: player positions, health, door hinge angles, mission objectives, and more.
 
 - It is only writable during a [**simulation tick**](./simulation-and-presentation.md#simulation).
-- In simulation logic, the output struct is called `SimulationState`. Clients' inputs are nested inside each individual client struct for convenience. In presentation, it's simply known as `Borger.Output`.
+- In simulation logic, the output struct is simply called `State`. Clients' inputs are nested inside each individual client struct for convenience, matching the exact structure of your `state.ts`. In presentation, it's known as `Borger.Output`.
 - The [**server and client**](./server-and-client.md) both share a copy of output state. The server has a complete view of everything, while the client can only see what's in [**scope**](./clients-and-scopes.md).
