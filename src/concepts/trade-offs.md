@@ -48,7 +48,7 @@ In this example, note the `WaitForConsensus` in the signature. It immediately (p
 ```rust
 pub fn on_client_connect
 (
-	state: &mut SimulationState,
+	state: &mut State,
 	client_id: usize32,
 	tick_id: TickID,
 	diff: &mut DiffSerializer<WaitForConsensus>,
